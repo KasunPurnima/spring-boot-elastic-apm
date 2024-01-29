@@ -6,15 +6,12 @@ server:
   error:
     whitelabel:
       enabled: false
-  port: 9080
+  port: 9081
   servlet:
     context-path: /serviceIntegration
 
-log4j:
-  logger:
-    org:
-      springframework=ALL:
-baseUrl: http://localhost:9080/serviceIntegration/trace/
+
+baseUrl: http://localhost:9081/serviceIntegration/trace/
 #baseUrl: http://:8080/traceIntegration/trace/
 esbUrl: http://52.118.255.135:7800
 

@@ -1,9 +1,9 @@
 package com.example.serviceIntegration;
 
-import co.elastic.apm.attach.ElasticApmAttacher;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
@@ -14,6 +14,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @EnableSwagger2
 @Slf4j
+@EnableAutoConfiguration
 public class ApplicationStarter extends SpringBootServletInitializer {
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
@@ -24,14 +25,14 @@ public class ApplicationStarter extends SpringBootServletInitializer {
 	public static void main(String[] args) {
 		SpringApplication app = new SpringApplication(ApplicationStarter.class);
 		app.setBannerMode(Banner.Mode.OFF);
-		ElasticApmAttacher.attach();
+	//	ElasticApmAttacher.attach();
 		app.run(args);
 	//	ElasticApmAttacher.attach();
 	//	configureApplication(new SpringApplicationBuilder()).run(args);
 	}
 
 	private static SpringApplicationBuilder configureApplication(SpringApplicationBuilder builder) {
-		ElasticApmAttacher.attach();
+	//	ElasticApmAttacher.attach();
 		return builder.sources(ApplicationStarter.class);
 	}
 
