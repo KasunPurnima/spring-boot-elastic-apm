@@ -1,20 +1,20 @@
 spring:
   application:
-    name: serviceIntegration
+    name: priceService
 
 server:
   error:
     whitelabel:
       enabled: false
-  port: 9080
+  port: 9081
   servlet:
-    context-path: /serviceIntegration
+    context-path: /priceService
 
 log4j:
   logger:
     org:
       springframework=ALL:
-baseUrl: http://localhost:9080/serviceIntegration/trace/
+price.baseUrl: http://localhost:9081/priceService/price/
 #baseUrl: http://:8080/traceIntegration/trace/
 esbUrl: http://52.118.255.135:7800
 

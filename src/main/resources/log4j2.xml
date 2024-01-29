@@ -27,7 +27,7 @@
     </Appenders>
 
     <Loggers>
-        <AsyncLogger name="com.example.serviceIntegration" level="debug"
+        <AsyncLogger name="com.example.priceService" level="debug"
                      additivity="false">
             <AppenderRef ref="ConsoleAppender" />
             <AppenderRef ref="FileAppender" />

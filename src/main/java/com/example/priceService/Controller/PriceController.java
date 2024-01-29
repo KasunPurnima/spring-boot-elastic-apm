@@ -1,8 +1,6 @@
-package com.example.serviceIntegration.Controller;
+package com.example.priceService.Controller;
 
-import com.example.serviceIntegration.ApplicationStarter;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
+import com.example.priceService.ApplicationStarter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -10,22 +8,19 @@ import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/trace")
+@RequestMapping("/price")
 @Slf4j
-public class TraceController {
+public class PriceController {
 
     @Autowired
     private Environment environment;
 
-    @Value("${baseUrl}")
+    @Value("${price.baseUrl}")
     private String baseUrl;
 
     @Value("${esbUrl}")
@@ -36,7 +31,18 @@ public class TraceController {
     //String addressUrl = System.getenv("BASEURL");
     private static final Logger logger = LogManager.getLogger(ApplicationStarter.class);
 
-    @GetMapping("/sampleData/method1")
+
+    @GetMapping("/priceDetails")
+    public ResponseEntity priceDetailsClass() {
+        System.out.println("inside priceDetailsClass");
+        logger.info("Incoming request at {} at - priceService-priceDetails");
+        String userId="OCCC";
+        MDC.put(HEADER_ID, userId);
+        MDC.clear();
+        logger.info("Inside Two");
+        return ResponseEntity.ok("priceDetails successfully retrieved  ");
+    }
+/*    @GetMapping("/sampleData/method1")
     public String method1(String elasticTraceID) {
 
         logger.info("method1--"+elasticTraceID);
@@ -45,8 +51,8 @@ public class TraceController {
         MDC.clear();
         System.out.println("method1--"+elasticTraceID);
         RestTemplate restTemplate = new RestTemplate();
-       /*String response = restTemplate.getForObject(baseUrl+"/method2/"+elasticTraceID+"/", String.class);
-        return ResponseEntity.ok("response of method 1----"+ response);*/
+       *//*String response = restTemplate.getForObject(baseUrl+"/method2/"+elasticTraceID+"/", String.class);
+        return ResponseEntity.ok("response of method 1----"+ response);*//*
         String response = method2(elasticTraceID);
         try {
             ObjectMapper objectMapper = new ObjectMapper();
@@ -136,7 +142,7 @@ public class TraceController {
         logger.fatal("Fatal error. Please fix me.");
         MDC.clear();
         return "Den Nam Athii Welaa";
-    }
+    }*/
 }
 
 

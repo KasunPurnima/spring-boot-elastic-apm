@@ -1,6 +1,6 @@
-package com.example.serviceIntegration.Controller;
+package com.example.priceService.Controller;
 
-import com.example.serviceIntegration.ApplicationStarter;
+import com.example.priceService.ApplicationStarter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

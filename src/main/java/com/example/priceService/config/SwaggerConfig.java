@@ -1,4 +1,4 @@
-package com.example.serviceIntegration.config;
+package com.example.priceService.config;
 
 
 import org.springframework.context.annotation.Bean;
@@ -18,15 +18,15 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.example.serviceIntegration.Controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.example.priceService.Controller"))
                 .build()
-                .groupName("serviceIntegrationConfigurationAPI")
+                .groupName("PriceServiceConfigurationAPI")
                 .apiInfo(apiInfo());
     }
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("ServiceIntegration Configuration API")
-                .description("ServiceIntegration Configuration API With Elastic APM Kibana")
+                .title("Price Service  Configuration API")
+                .description("Price Service  Configuration API With Elastic APM Kibana")
                 .version("3.0")
                 .build();
     }

@@ -1,4 +1,4 @@
-package com.example.serviceIntegration.config;
+package com.example.priceService.config;
 
 import org.springframework.context.annotation.Configuration;
 
