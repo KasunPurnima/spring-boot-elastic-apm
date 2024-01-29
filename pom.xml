@@ -48,6 +48,13 @@
 				<scope>import</scope>
 				<type>pom</type>
 			</dependency>
+			<dependency>
+				<groupId>io.opentelemetry</groupId>
+				<artifactId>opentelemetry-bom</artifactId>
+				<version>1.34.1</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -125,7 +132,7 @@
 			<version>2.8.0</version>
 		</dependency>
 
-		
+
 		<!--<dependency> <groupId>io.opentelemetry</groupId> <artifactId>opentelemetry-exporter-otlp</artifactId> 
 			<version>1.11.0</version> </dependency> <dependency> <groupId>io.opentelemetry</groupId> 
 			<artifactId>opentelemetry-api</artifactId> <version>1.11.0</version> </dependency> -->
@@ -173,6 +180,12 @@
 			<scope>import</scope>
 			<type>pom</type>
 		</dependency>
+		<dependency>
+			<groupId>io.opentelemetry</groupId>
+			<artifactId>opentelemetry-api</artifactId>
+		</dependency>
+		
+
 		<!-- <dependency> -->
 		<!-- <groupId>org.springframework.boot</groupId> -->
 		<!-- <artifactId>spring-boot-starter-data-elasticsearch</artifactId> -->
