@@ -1,6 +1,8 @@
 package com.example.priceService.Controller;
 
 import com.example.priceService.ApplicationStarter;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -8,8 +10,11 @@ import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 @RestController
 @CrossOrigin
@@ -32,7 +37,7 @@ public class PriceController {
     private static final Logger logger = LogManager.getLogger(ApplicationStarter.class);
 
 
-    @GetMapping("/priceDetails")
+/*@GetMapping("/priceDetails")
     public ResponseEntity priceDetailsClass() {
         System.out.println("inside priceDetailsClass");
         logger.info("Incoming request at {} at - priceService-priceDetails");
@@ -41,6 +46,40 @@ public class PriceController {
         MDC.clear();
         logger.info("Inside Two");
         return ResponseEntity.ok("priceDetails successfully retrieved  ");
+    }*/
+
+    @GetMapping("/priceDetails")
+    public String onrPricePriceDetails(String priceDetails) {
+        logger.info("onrPricePriceDetails"+priceDetails);
+       priceDetails="01012010";
+        System.out.println("onrPricePriceDetails--"+priceDetails);
+        String pricing = pricingesb(priceDetails);
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            Object jsonTree = objectMapper.readTree(pricing);
+            ObjectWriter writer = objectMapper.writerWithDefaultPrettyPrinter();
+            String formattedJson = writer.writeValueAsString(jsonTree);
+            return formattedJson;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Data not found";
+        }
+    }
+
+
+    private String pricingesb(String priceDetails) {
+        logger.info("Info log Inside pricingesb callEsb");
+        logger.info("callEsb pricingesb--"+priceDetails);
+        System.out.println("pricingesb--"+priceDetails);
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<String> response = restTemplate.exchange(
+                esbUrl + "/helloWorld", HttpMethod.GET, null, String.class);
+        if (response.getStatusCode() == HttpStatus.OK) {
+            return response.getBody();
+        } else {
+            logger.error("Oops! Error calling endpoint");
+            return "Error calling  endpoint";
+        }
     }
 /*    @GetMapping("/sampleData/method1")
     public String method1(String elasticTraceID) {
