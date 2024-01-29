@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: serviceIntegration
+
+server:
+  error:
+    whitelabel:
+      enabled: false
+  port: 9080
+  servlet:
+    context-path: /serviceIntegration
+
+log4j:
+  logger:
+    org:
+      springframework=ALL:
+baseUrl: http://localhost:9080/serviceIntegration/trace/
+#baseUrl: http://:8080/traceIntegration/trace/
+esbUrl: http://52.118.255.135:7800
+
+
+
+#baseUrl: http://:7443/traceIntegration/trace/
+#esbUrl: http://:7800
