@@ -14,7 +14,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.1.2.RELEASE</version>
+		<version>2.7.9</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -24,6 +24,38 @@
 		<java.version>1.8</java.version>
 	</properties>
 
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>2.7.9</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>2021.0.5</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-sleuth-otel-dependencies</artifactId>
+				<version>1.1.2</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+			<dependency>
+				<groupId>io.opentelemetry</groupId>
+				<artifactId>opentelemetry-bom</artifactId>
+				<version>1.34.1</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 	<dependencies>
 
 		<!-- Exclude Spring Boot's Default Logging -->
@@ -57,10 +89,6 @@
             <version>3.4.0</version>
         </dependency>
 
-<!--		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
@@ -101,59 +129,48 @@
 		</dependency>
 
 		<dependency>
-			<groupId>io.opentracing.contrib</groupId>
-			<artifactId>opentracing-spring-jaeger-cloud-starter</artifactId>
-			<version>3.3.1</version>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-sleuth</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.cloud</groupId>
+					<artifactId>spring-cloud-sleuth-brave</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
-		<!--<dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-sleuth-otel-autoconfigure</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>io.opentelemetry</groupId>
 			<artifactId>opentelemetry-exporter-otlp</artifactId>
-			<version>1.11.0</version>
+			<version>1.23.1</version>
 		</dependency>
-
+		<dependency>
+			<groupId>io.opentelemetry</groupId>
+			<artifactId>opentelemetry-exporter-otlp-common</artifactId>
+			<version>1.14.0</version>
+			<scope>import</scope>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>io.opentelemetry</groupId>
+			<artifactId>opentelemetry-exporter-otlp-trace</artifactId>
+			<version>1.14.0</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>4.0.1</version>
+			<scope>import</scope>
+			<type>pom</type>
+		</dependency>
 		<dependency>
 			<groupId>io.opentelemetry</groupId>
 			<artifactId>opentelemetry-api</artifactId>
-			<version>1.11.0</version>
-		</dependency>-->
-
-
-		<!--	<dependency>
-                <groupId>io.micrometer</groupId>
-                <artifactId>micrometer-tracing-bridge-otel</artifactId>
-            </dependency>
-          -->
-		<!-- https://mvnrepository.com/artifact/co.elastic.apm/elastic-apm-agent -->
-
-		<dependency>
-			<groupId>co.elastic.apm</groupId>
-			<artifactId>elastic-apm-agent</artifactId>
-			<version>1.34.0</version>
 		</dependency>
 
-		<dependency>
-			<groupId>co.elastic.apm</groupId>
-			<artifactId>apm-agent-attach</artifactId>
-			<version>1.34.0</version>
-		</dependency>
-
-
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.boot</groupId>-->
-<!--			<artifactId>spring-boot-starter-data-elasticsearch</artifactId>-->
-<!--		</dependency>-->
-<!--		<dependency>-->
-<!--			<groupId>org.elasticsearch.client</groupId>-->
-<!--			<artifactId>elasticsearch-rest-client</artifactId>-->
-<!--			<version>7.17.2</version>-->
-<!--		</dependency>-->
-
-		<!-- https://mvnrepository.com/artifact/org.elasticsearch.client/transport -->
-<!--		<dependency>-->
-<!--			<groupId>org.elasticsearch.client</groupId>-->
-<!--			<artifactId>transport</artifactId>-->
-<!--			<version>7.17.2</version>-->
-<!--		</dependency>-->
 	</dependencies>
 	<build>
 		<plugins>
