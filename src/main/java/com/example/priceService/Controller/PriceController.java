@@ -49,11 +49,11 @@ public class PriceController {
     }*/
 
     @GetMapping("/priceDetails")
-    public String onrPricePriceDetails(String priceDetails) {
-        logger.info("onrPricePriceDetails"+priceDetails);
-       priceDetails="01012010";
-        System.out.println("onrPricePriceDetails--"+priceDetails);
-        String pricing = pricingesb(priceDetails);
+    public String priceDetails() {
+        logger.info("priceDetails");
+        String  priceDetails="01012010";
+        System.out.println("priceDetails--"+priceDetails);
+        String pricing = onePricingESB(priceDetails);
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             Object jsonTree = objectMapper.readTree(pricing);
@@ -67,13 +67,13 @@ public class PriceController {
     }
 
 
-    private String pricingesb(String priceDetails) {
-        logger.info("Info log Inside pricingesb callEsb");
-        logger.info("callEsb pricingesb--"+priceDetails);
-        System.out.println("pricingesb--"+priceDetails);
+    private String onePricingESB(String priceDetails) {
+        logger.info("Info log Inside priceDetails callEsb");
+        logger.info("callEsb priceDetails--"+priceDetails);
+        System.out.println("priceDetails--"+priceDetails);
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> response = restTemplate.exchange(
-                esbUrl + "/helloWorld", HttpMethod.GET, null, String.class);
+                esbUrl + "/singletransfer", HttpMethod.GET, null, String.class);
         if (response.getStatusCode() == HttpStatus.OK) {
             return response.getBody();
         } else {

@@ -25,8 +25,8 @@ public class ApplicationStarter extends SpringBootServletInitializer {
 		app.setBannerMode(Banner.Mode.OFF);
 		ElasticApmAttacher.attach();
 		app.run(args);
-	//	ElasticApmAttacher.attach();
-		configureApplication(new SpringApplicationBuilder()).run(args);
+		//ElasticApmAttacher.attach();
+		//configureApplication(new SpringApplicationBuilder()).run(args);
 	}
 
 	private static SpringApplicationBuilder configureApplication(SpringApplicationBuilder builder) {

@@ -5,7 +5,7 @@
 
 	<groupId>com.example</groupId>
 	<artifactId>elastic-apm</artifactId>
-	<version>0.0.1-price</version>
+	<version>0.0.1-price-service</version>
 	<packaging>war</packaging>
 
 	<name>priceService</name>
