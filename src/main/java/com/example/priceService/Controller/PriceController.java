@@ -8,6 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpMethod;
@@ -21,6 +22,10 @@ import org.springframework.web.client.RestTemplate;
 @RequestMapping("/price")
 @Slf4j
 public class PriceController {
+
+    @Autowired
+    @Qualifier("RestTemplateCert")
+    RestTemplate restTemplate;
 
     @Autowired
     private Environment environment;
@@ -71,7 +76,7 @@ public class PriceController {
         logger.info("Info log Inside priceDetails callEsb");
         logger.info("callEsb priceDetails--"+priceDetails);
         System.out.println("priceDetails--"+priceDetails);
-        RestTemplate restTemplate = new RestTemplate();
+
         ResponseEntity<String> response = restTemplate.exchange(
                 esbUrl + "/singletransfer", HttpMethod.GET, null, String.class);
         if (response.getStatusCode() == HttpStatus.OK) {
